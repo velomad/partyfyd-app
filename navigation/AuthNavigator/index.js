@@ -1,28 +1,28 @@
 import React from "react";
-import { Text, View ,StyleSheet} from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
-import { SelectPlan, EnterPhoneNo, OtpVerification } from "./Components";
+import { SelectPlan, EnterPhoneNo, OtpVerification, FeedBack } from "./Components";
 
 const AuthNavigator = () => {
 
   return (
     <View style={styles.wrapper}>
       <Stack.Navigator>
-      <Stack.Screen
+        <Stack.Screen
           name="EnterPhoneNo"
-          options={{headerShown: false}}
+          options={{ headerShown: false }}
           component={EnterPhoneNo}
         />
         <Stack.Screen
           name="OtpVerification"
-          options={{headerShown: false}}
+          options={{ headerShown: false }}
           component={OtpVerification}
         />
         <Stack.Screen
           name="SelectPlans"
-          options={{headerShown: false}}
+          options={{ headerShown: false }}
           component={SelectPlan}
         />
       </Stack.Navigator>

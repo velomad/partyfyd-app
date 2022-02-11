@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TextInput, SafeAreaView, ImageBackground } from 'react-native';
 import { FONTS, images, SIZES } from "../../../../constants";
+import { CustomButton } from "../../../../components";
 
 const EnterPhoneNo = ({ navigation }) => {
   const [number, onChangeNumber] = React.useState(null);
@@ -20,6 +21,9 @@ const EnterPhoneNo = ({ navigation }) => {
               keyboardType="numeric"
             />
           </View>
+          <View style={styles.otpbtn}>
+            <CustomButton>Get OTP</CustomButton>
+          </View>
         </View>
       </ImageBackground>
     </SafeAreaView>
@@ -33,6 +37,11 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     justifyContent: 'center',
+  },
+  otpbtn:{
+    marginTop:SIZES.width / 5,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   container: {
     flex: 1,
@@ -53,7 +62,7 @@ const styles = StyleSheet.create({
     borderWidth: 2
   },
   align: {
-    paddingTop: SIZES.width / 3,
+    marginTop: SIZES.width / 1.5,
     justifyContent: 'center',
     alignItems: 'center',
   }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TextInput, SafeAreaView, ImageBackground } from 'react-native';
 import { FONTS, images, SIZES } from "../../constants";
+import { CustomButton } from "../../components";
 
 const FeedBack = () => {
   const [number, onChangeNumber] = React.useState(null);
@@ -20,6 +21,9 @@ const FeedBack = () => {
               multiline={true}
             />
           </View>
+          <View style={styles.otpbtn}>
+        <CustomButton btnRadius={20} btnbgcolor="#7540FD">Submit</CustomButton>
+      </View>
     </View>
   );
 };
@@ -32,6 +36,11 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  otpbtn: {
+    marginTop: SIZES.width / 8,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   textAreaContainer: {
     borderColor: '#999',

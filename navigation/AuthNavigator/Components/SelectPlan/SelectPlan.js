@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, TextInput, SafeAreaView, ImageBackground } from 'react-native';
 import { MultiSlider } from "../../../../components";
 import { FONTS, images, SIZES } from "../../../../constants";
+import { CustomButton } from "../../../../components";
 
 const SelectPlan = () => {
   const [number, onChangeNumber] = React.useState(null);
@@ -73,6 +74,9 @@ const SelectPlan = () => {
               <View style={styles.utText}><Text style={styles.crossMark}>{'\u274C'}</Text><Text style={styles.crossMarktext}>Crackers</Text></View>
             </View>
           </View>
+          <View style={styles.otpbtn}>
+            <CustomButton btnRadius={20} btnbgcolor="green">Buy Now</CustomButton>
+          </View>
         </View>
       </View>
     </SafeAreaView>
@@ -90,7 +94,13 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    paddingVertical: SIZES.width / 10
+    paddingVertical: SIZES.width / 40
+  },
+  otpbtn: {
+    marginTop: SIZES.width / 50,
+    paddingVertical: SIZES.width / 20,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   headerContainer: {
     alignItems: 'center',
@@ -110,7 +120,7 @@ const styles = StyleSheet.create({
   planToggle: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: SIZES.width / 20,
+    marginTop: SIZES.width / 60,
     backgroundColor: '#ADC86D',
     width: SIZES.width / 1.4,
     borderRadius: SIZES.width / 10,
@@ -191,6 +201,7 @@ const styles = StyleSheet.create({
     borderColor: '#999',
     borderWidth: 2,
     padding: 5,
+    marginTop: SIZES.width / 10,
     marginHorizontal: SIZES.width / 50,
     borderRadius: SIZES.width / 25
   },

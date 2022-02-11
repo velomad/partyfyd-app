@@ -10,16 +10,16 @@ const AuthNavigator = () => {
   return (
     <View style={styles.wrapper}>
       <Stack.Navigator>
-        <Stack.Screen
+        {/* <Stack.Screen
           name="EnterPhoneNo"
           options={{ headerShown: false }}
           component={EnterPhoneNo}
-        />
-        <Stack.Screen
+        /> */}
+        {/* <Stack.Screen
           name="OtpVerification"
           options={{ headerShown: false }}
           component={OtpVerification}
-        />
+        /> */}
         <Stack.Screen
           name="SelectPlans"
           options={{ headerShown: false }}

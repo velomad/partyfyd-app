@@ -11,6 +11,7 @@ import {
 import { Card } from "react-native-paper";
 import { FocusAwareStatusBar } from "../../components";
 import { images, SIZES } from "../../constants";
+import { SelectPlan } from "../../navigation/AuthNavigator/Components";
 
 const DATA = [
   {
@@ -62,19 +63,18 @@ const ActivePlans = () => {
       style={{
         flex: 1,
         paddingTop: "5%",
-        paddingLeft: "5%",
         alignItems: "center"
       }}
     >
       <FocusAwareStatusBar barStyle="dark-content" backgroundColor="#fff" />
-      <SafeAreaView>
-        <FlatList
-          horizontal
-          data={DATA}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-        />
-      </SafeAreaView>
+      <FlatList
+        horizontal
+        data={DATA}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+      />
+
+      <SelectPlan />
     </View>
   );
 };

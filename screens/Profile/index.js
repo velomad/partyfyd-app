@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { Image, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import { CustomButton, FocusAwareStatusBar } from "../../components";
 import TextField from "../../components/TextField";
 import { images, SIZES } from "../../constants";
@@ -34,9 +34,17 @@ const Profile = () => {
       </View>
 
       <View>
-        <TextField />
-        <TextField />
-        <TextField />
+        <View style={styles.textField}>
+          <TextField label={"Name"} />
+        </View>
+
+        <View style={styles.textField}>
+          <TextField label={"Phone Number"} />
+        </View>
+
+        <View style={styles.textField}>
+          <TextField label={"Email"} />
+        </View>
 
         <CustomButton>submit</CustomButton>
       </View>
@@ -45,3 +53,9 @@ const Profile = () => {
 };
 
 export default Profile;
+
+const styles = StyleSheet.create({
+  textField: {
+    paddingVertical: "4%"
+  }
+});

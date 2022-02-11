@@ -3,6 +3,7 @@ import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import BottomNavigator from "../BottomNavigator";
 import Header from "../components/Header/Header";
+import { CreateEvent } from "../../screens";
 
 const Stack = createStackNavigator();
 
@@ -31,6 +32,14 @@ const AppNavigator = (props) => {
         name="partyfyd"
         options={{ headerShown: false }}
         component={BottomNavigator}
+      />
+
+      <Stack.Screen
+        name="createEvent"
+        options={{
+          title: "Create Event"
+        }}
+        component={CreateEvent}
       />
     </Stack.Navigator>
   );

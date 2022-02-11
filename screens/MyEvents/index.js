@@ -7,14 +7,15 @@ import {
   Image,
   FlatList,
   Animated,
-  SafeAreaView
+  SafeAreaView,
+  TouchableOpacity
 } from "react-native";
 import { FocusAwareStatusBar } from "../../components";
 import { Events } from "./components";
 import { COLORS, images, SIZES } from "../../constants";
 import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
 
-const MyEvents = () => {
+const MyEvents = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <FocusAwareStatusBar barStyle="dark-content" backgroundColor="#fff" />
@@ -22,7 +23,8 @@ const MyEvents = () => {
       <View>
         <View style={styles.eventNameContainer}>
           <Text style={{ color: COLORS.white }}>Basic Plan</Text>
-          <View
+          <TouchableOpacity
+            onPress={() => navigation.navigate("createEvent")}
             style={{
               backgroundColor: COLORS.white,
               borderRadius:
@@ -43,7 +45,7 @@ const MyEvents = () => {
             >
               +
             </Text>
-          </View>
+          </TouchableOpacity>
         </View>
 
         {/* <View style={{ marginVertical: "10%" }}>

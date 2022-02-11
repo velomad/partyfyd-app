@@ -2,13 +2,13 @@ import React from "react";
 import { View } from "react-native";
 import { TextInput } from "react-native-paper";
 
-const TextField = () => {
+const TextField = ({ mode = "outlined", label, placeholder }) => {
   return (
     <View>
       <TextInput
-        mode="outlined"
-        label="Outlined input"
-        placeholder="Type something"
+        mode={mode}
+        label={label}
+        placeholder={placeholder}
         // right={<TextInput.Affix text="/100" />}
       />
     </View>

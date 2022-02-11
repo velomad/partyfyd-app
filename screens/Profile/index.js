@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { Image, Text, View } from "react-native";
-import { FocusAwareStatusBar } from "../../components";
+import { CustomButton, FocusAwareStatusBar } from "../../components";
 import TextField from "../../components/TextField";
 import { images, SIZES } from "../../constants";
 
@@ -37,6 +37,8 @@ const Profile = () => {
         <TextField />
         <TextField />
         <TextField />
+
+        <CustomButton>submit</CustomButton>
       </View>
     </View>
   );

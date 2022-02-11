@@ -29,7 +29,7 @@ const AppNavigator = (props) => {
 
   return (
     <Stack.Navigator>
-      {/* <Stack.Screen
+      <Stack.Screen
         name="partyfyd"
         options={{ headerShown: false }}
         component={BottomNavigator}
@@ -43,7 +43,7 @@ const AppNavigator = (props) => {
             backgroundColor: '#FFFF',
           },
         }}
-      /> */}
+      />
       <Stack.Screen
         name="helpandsupport"
         component={HelpAndSupport}

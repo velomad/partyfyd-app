@@ -1,10 +1,10 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { FONTS, images, SIZES } from "../../../constants";
 
 const Header = ({ title, navigation }) => {
-  console.log(title);
+  console.log("navigation --->",navigation);
   return (
     <View
       style={{
@@ -29,12 +29,16 @@ const Header = ({ title, navigation }) => {
         >
           {title}
         </Text>
-
         <View>
-          <Image
-            style={{ height: SIZES.width / 20, width: SIZES.width / 20 }}
-            source={images.notificationBell}
-          />
+          <TouchableOpacity
+            activeOpacity={1}
+            onPress={() => navigation.navigate("notifications")}
+          >
+            <Image
+              style={{ height: SIZES.width / 20, width: SIZES.width / 20 }}
+              source={images.notificationBell}
+            />
+          </TouchableOpacity>
         </View>
       </View>
     </View>

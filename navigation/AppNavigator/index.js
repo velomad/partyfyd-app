@@ -3,7 +3,8 @@ import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import BottomNavigator from "../BottomNavigator";
 import Header from "../components/Header/Header";
-import { CreateEvent } from "../../screens";
+import { Notifications, HelpAndSupport,FeedBack } from '../../screens';
+import { View, Text, StyleSheet, Image, Button } from "react-native";
 
 const Stack = createStackNavigator();
 
@@ -33,13 +34,35 @@ const AppNavigator = (props) => {
         options={{ headerShown: false }}
         component={BottomNavigator}
       />
-
       <Stack.Screen
-        name="createEvent"
+        name="notifications"
+        component={Notifications}
         options={{
-          title: "Create Event"
+          title: 'Notifications',
+          headerStyle: {
+            backgroundColor: '#FFFF',
+          },
         }}
-        component={CreateEvent}
+      />
+      <Stack.Screen
+        name="helpandsupport"
+        component={HelpAndSupport}
+        options={{
+          title: 'Help And Support',
+          headerStyle: {
+            backgroundColor: '#FFFF',
+          },
+        }}
+      />
+      <Stack.Screen
+        name="feedback"
+        component={FeedBack}
+        options={{
+          title: 'FeedBack',
+          headerStyle: {
+            backgroundColor: '#FFFF',
+          },
+        }}
       />
     </Stack.Navigator>
   );

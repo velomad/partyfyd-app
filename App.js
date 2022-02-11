@@ -38,7 +38,7 @@ const App = () => {
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       <NavigationContainer>
-        {false ? <AppNavigator /> : <AuthNavigator />}
+        {!false ? <AppNavigator /> : <AuthNavigator />}
       </NavigationContainer>
     </AuthContext.Provider>
   );

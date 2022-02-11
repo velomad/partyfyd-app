@@ -10,6 +10,7 @@ export const star = require("../assets/images/star.png");
 export const info = require("../assets/images/info.png");
 export const edit = require("../assets/images/edit.png");
 export const profileImage = require("../assets/images/profileImage.png");
+export const feedback = require("../assets/images/FeedBack.png");
 
 export default {
   partyfydLogo,
@@ -23,5 +24,6 @@ export default {
   star,
   info,
   edit,
-  profileImage
+  profileImage,
+  feedback
 };

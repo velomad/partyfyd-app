@@ -5,7 +5,7 @@ import { CustomButton } from "../../../../components";
 
 const EnterPhoneNo = ({ navigation }) => {
   const [number, onChangeNumber] = React.useState(null);
-  
+
   return (
     <SafeAreaView style={styles.wrapper}>
       <ImageBackground
@@ -22,7 +22,13 @@ const EnterPhoneNo = ({ navigation }) => {
             />
           </View>
           <View style={styles.otpbtn}>
-            <CustomButton>Get OTP</CustomButton>
+            <CustomButton
+              onPress={() => navigation.navigate('OtpVerification')}
+              btnbgcolor="#7540FD"
+              btnRadius={20}
+              btnpaddingVertical={SIZES.width / 60}
+              btnpaddingHorizontal={SIZES.width / 20}
+            >Get OTP</CustomButton>
           </View>
         </View>
       </ImageBackground>
@@ -38,8 +44,8 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: 'center',
   },
-  otpbtn:{
-    marginTop:SIZES.width / 5,
+  otpbtn: {
+    marginTop: SIZES.width / 5,
     justifyContent: 'center',
     alignItems: 'center',
   },

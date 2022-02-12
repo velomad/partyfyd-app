@@ -6,14 +6,52 @@ import {
   StyleSheet,
   TextInput,
   SafeAreaView,
-  ImageBackground
+  ImageBackground,
+  TouchableOpacity,
+  FlatList
 } from "react-native";
 import { MultiSlider } from "../../../../components";
 import { FONTS, images, SIZES } from "../../../../constants";
 import { CustomButton } from "../../../../components";
 
+const DATA = [
+  {
+    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
+    img: "cake1"
+  },
+  {
+    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
+    img: "cake2"
+  },
+  {
+    id: "58694a0f-3da1-471f-bd96-145571e29d72",
+    img: "cake3"
+  },
+  {
+    id: "58694a0f-3da1-471f-bd96-145571e29d7287",
+    img: "cake4"
+  }
+];
+
+const Item = ({ img }) => (
+  <Image
+    source={images['cake1']}
+    style={{
+      height: SIZES.width / 4.5, width: SIZES.width / 4.5, marginRight: 4,
+      borderRadius: SIZES.width / 25,marginRight : SIZES.width / 45
+    }}
+  />
+);
+
 const SelectPlan = () => {
+
+  const renderItem = ({ item }) => <Item title={item.title} />;
+  const [selectedPlan, setSelectedPlan] = React.useState('BasicPlan');
   const [number, onChangeNumber] = React.useState(null);
+  const handleSelectPlan = (planName) => {
+    setSelectedPlan(planName);
+  }
+
   return (
     <SafeAreaView style={styles.wrapper}>
       <View style={styles.container}>
@@ -23,15 +61,30 @@ const SelectPlan = () => {
             Choose a plan that works best for you!
           </Text>
         </View>
-        <View style={styles.planToggle}>
-          <View style={styles.basicPlan}>
-            <Text style={styles.planText}>Basic</Text>
+        <View style={selectedPlan == 'BasicPlan' ? styles.planToggle : selectedPlan == 'StandardPlan' ? styles.planToggleStandard : styles.planTogglePrimum}>
+          <View style={selectedPlan == 'BasicPlan' ? styles.basicPlan : selectedPlan == 'StandardPlan' ? styles.onStandardSelectd : styles.onPrimumSelectd}>
+            <TouchableOpacity
+              activeOpacity={1}
+              onPress={() => handleSelectPlan("BasicPlan")}
+            >
+              <Text style={styles.planText}>Basic</Text>
+            </TouchableOpacity>
           </View>
-          <View style={styles.standardPlan}>
-            <Text style={styles.planText}>Standard</Text>
+          <View style={selectedPlan == "StandardPlan" ? styles.standardPlan : selectedPlan == 'BasicPlan' ? styles.onBasicSelectd : styles.onPrimumSelectd}>
+            <TouchableOpacity
+              activeOpacity={1}
+              onPress={() => handleSelectPlan("StandardPlan")}
+            >
+              <Text style={styles.planText}>Standard</Text>
+            </TouchableOpacity>
           </View>
-          <View style={styles.premiumPlan}>
-            <Text style={styles.planText}>Premium</Text>
+          <View style={selectedPlan == 'PremiumPlan' ? styles.premiumPlan : selectedPlan == 'BasicPlan' ? styles.onBasicSelectd : selectedPlan == 'StandardPlan' ? styles.onStandardSelectd : ""}>
+            <TouchableOpacity
+              activeOpacity={1}
+              onPress={() => handleSelectPlan("PremiumPlan")}
+            >
+              <Text style={styles.planText}>Premium</Text>
+            </TouchableOpacity>
           </View>
         </View>
         <View style={styles.cardContainer}>
@@ -43,6 +96,7 @@ const SelectPlan = () => {
               scrollwidth={240}
               textLable="events"
               sliderCount={10}
+              seekBarColor={selectedPlan == 'BasicPlan' ? '#A5D721' : selectedPlan == 'StandardPlan' ? '#02BDEB' : '#EE071C'}
               selectedCount={3}
             />
             <Text style={styles.sliderInfo1}>Number of Events per year</Text>
@@ -55,56 +109,140 @@ const SelectPlan = () => {
             <MultiSlider
               scrollwidth={240}
               textLable="years"
+              seekBarColor={selectedPlan == 'BasicPlan' ? '#A5D721' : selectedPlan == 'StandardPlan' ? '#02BDEB' : '#EE071C'}
               sliderCount={10}
               selectedCount={3}
             />
             <Text style={styles.sliderInfo1}>Number of years</Text>
           </View>
           <View style={styles.textAreaContainer}>
-            <TextInput
-              style={styles.textArea}
-              underlineColorAndroid="transparent"
-              placeholder="Cakes"
-              placeholderTextColor="grey"
-              numberOfLines={10}
-              multiline={true}
+            <FlatList
+              horizontal
+              data={DATA}
+              renderItem={renderItem}
+              keyExtractor={(item) => item.id}
             />
           </View>
           <View style={styles.extraUtilitiesContainer}>
             <Text style={styles.extraText1}>Extra Utilities :-</Text>
             <View style={styles.utTextContainer}>
               <View style={styles.utText}>
-                <Text style={styles.crossMark}>{"\u274C"}</Text>
+                {selectedPlan == 'BasicPlan' ? <Image
+                  source={images.crossmark}
+                  style={{ height: SIZES.width / 28, width: SIZES.width / 28, marginRight: 4 }}
+                /> : <Text></Text>}
+                {selectedPlan == 'PremiumPlan' ? <Image
+                  source={images.checkmark}
+                  style={{ height: SIZES.width / 28, width: SIZES.width / 28, marginRight: 4 }}
+                /> : <Text></Text>}
+                {
+                  selectedPlan == 'StandardPlan' ? <Image
+                    source={images.checkmark}
+                    style={{ height: SIZES.width / 28, width: SIZES.width / 28, marginRight: 4 }}
+                  /> : <Text></Text>
+                }
                 <Text style={styles.crossMarktext}>Baloons</Text>
               </View>
 
               <View style={styles.utText}>
-                <Text style={styles.crossMark}>{"\u274C"}</Text>
+                {selectedPlan == 'BasicPlan' ? <Image
+                  source={images.crossmark}
+                  style={{ height: SIZES.width / 28, width: SIZES.width / 28, marginRight: 4 }}
+                /> : <Text></Text>}
+                {selectedPlan == 'PremiumPlan' ? <Image
+                  source={images.checkmark}
+                  style={{ height: SIZES.width / 28, width: SIZES.width / 28, marginRight: 4 }}
+                /> : <Text></Text>}
+                {
+                  selectedPlan == 'StandardPlan' ? <Image
+                    source={images.checkmark}
+                    style={{ height: SIZES.width / 28, width: SIZES.width / 28, marginRight: 4 }}
+                  /> : <Text></Text>
+                }
                 <Text style={styles.crossMarktext}>Cards</Text>
               </View>
 
               <View style={styles.utText}>
-                <Text style={styles.crossMark}>{"\u274C"}</Text>
+                {selectedPlan == 'BasicPlan' ? <Image
+                  source={images.crossmark}
+                  style={{ height: SIZES.width / 28, width: SIZES.width / 28, marginRight: 4 }}
+                /> : <Text></Text>}
+                {selectedPlan == 'PremiumPlan' ? <Image
+                  source={images.checkmark}
+                  style={{ height: SIZES.width / 28, width: SIZES.width / 28, marginRight: 4 }}
+                /> : <Text></Text>}
+                {
+                  selectedPlan == 'StandardPlan' ? <Image
+                    source={images.crossmark}
+                    style={{ height: SIZES.width / 28, width: SIZES.width / 28, marginRight: 4 }}
+                  /> : <Text></Text>
+                }
                 <Text style={styles.crossMarktext}>Chocolate</Text>
               </View>
             </View>
             <View style={styles.utTextContainer}>
               <View style={styles.utText}>
-                <Text style={styles.crossMark}>{"\u274C"}</Text>
+                {selectedPlan == 'BasicPlan' ? <Image
+                  source={images.crossmark}
+                  style={{ height: SIZES.width / 28, width: SIZES.width / 28, marginRight: 4 }}
+                /> : <Text></Text>}
+                {selectedPlan == 'PremiumPlan' ? <Image
+                  source={images.checkmark}
+                  style={{ height: SIZES.width / 28, width: SIZES.width / 28, marginRight: 4 }}
+                /> : <Text></Text>}
+                {
+                  selectedPlan == 'StandardPlan' ? <Image
+                    source={images.checkmark}
+                    style={{ height: SIZES.width / 28, width: SIZES.width / 28, marginRight: 4 }}
+                  /> : <Text></Text>
+                }
                 <Text style={styles.crossMarktext}>Ribbions</Text>
               </View>
               <View style={styles.utText}>
-                <Text style={styles.crossMark}>{"\u274C"}</Text>
+                {selectedPlan == 'BasicPlan' ? <Image
+                  source={images.crossmark}
+                  style={{ height: SIZES.width / 28, width: SIZES.width / 28, marginRight: 4 }}
+                /> : <Text></Text>}
+                {selectedPlan == 'PremiumPlan' ? <Image
+                  source={images.checkmark}
+                  style={{ height: SIZES.width / 28, width: SIZES.width / 28, marginRight: 4 }}
+                /> : <Text></Text>}
+                {
+                  selectedPlan == 'StandardPlan' ? <Image
+                    source={images.crossmark}
+                    style={{ height: SIZES.width / 28, width: SIZES.width / 28, marginRight: 4 }}
+                  /> : <Text></Text>
+                }
                 <Text style={styles.crossMarktext}>Part hats</Text>
               </View>
               <View style={styles.utText}>
-                <Text style={styles.crossMark}>{"\u274C"}</Text>
+                {selectedPlan == 'BasicPlan' ? <Image
+                  source={images.crossmark}
+                  style={{ height: SIZES.width / 28, width: SIZES.width / 28, marginRight: 4 }}
+                /> : <Text></Text>}
+                {selectedPlan == 'PremiumPlan' ? <Image
+                  source={images.checkmark}
+                  style={{ height: SIZES.width / 28, width: SIZES.width / 28, marginRight: 4 }}
+                /> : <Text></Text>}
+                {
+                  selectedPlan == 'StandardPlan' ? <Image
+                    source={images.crossmark}
+                    style={{ height: SIZES.width / 28, width: SIZES.width / 28, marginRight: 4 }}
+                  /> : <Text></Text>
+                }
                 <Text style={styles.crossMarktext}>Crackers</Text>
               </View>
             </View>
           </View>
           <View style={styles.otpbtn}>
-            <CustomButton btnRadius={20} btnbgcolor="green">Buy Now</CustomButton>
+            <CustomButton
+              onPress={() => navigation.navigate('SelectPlans')}
+              btnbgcolor={selectedPlan == 'BasicPlan'? "#A5D721": selectedPlan == 'StandardPlan'? '#6ACFED':'#EE071C'}
+              btnRadius={20}
+              btnpaddingVertical={SIZES.width / 60}
+              btnpaddingHorizontal={SIZES.width / 20}
+              btnfontsize={SIZES.width / 25}
+            >Buy Now</CustomButton>
           </View>
         </View>
       </View>
@@ -126,14 +264,15 @@ const styles = StyleSheet.create({
     paddingVertical: SIZES.width / 40
   },
   otpbtn: {
-    marginTop: SIZES.width / 50,
+    marginTop: SIZES.width / 150,
     paddingVertical: SIZES.width / 20,
     justifyContent: 'center',
     alignItems: 'center',
   },
   headerContainer: {
     alignItems: "center",
-    paddingVertical: SIZES.width / 20
+    paddingTop: SIZES.width / 7,
+    paddingBottom: SIZES.width / 25,
   },
   title: {
     fontSize: SIZES.width / 20,
@@ -155,6 +294,24 @@ const styles = StyleSheet.create({
     borderRadius: SIZES.width / 10,
     height: "auto"
   },
+  planToggleStandard: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: SIZES.width / 60,
+    backgroundColor: '#6ACFED',
+    width: SIZES.width / 1.4,
+    borderRadius: SIZES.width / 10,
+    height: "auto"
+  },
+  planTogglePrimum: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: SIZES.width / 60,
+    backgroundColor: '#E86D77',
+    width: SIZES.width / 1.4,
+    borderRadius: SIZES.width / 10,
+    height: "auto"
+  },
   basicPlan: {
     flex: 1,
     backgroundColor: "#93AC57",
@@ -162,14 +319,40 @@ const styles = StyleSheet.create({
     borderRadius: SIZES.width / 10,
     alignItems: "center"
   },
+  onBasicSelectd: {
+    flex: 1,
+    backgroundColor: "#ADC86D",
+    borderRadius: SIZES.width / 10,
+    padding: SIZES.width / 28,
+    alignItems: "center"
+  },
+  onStandardSelectd: {
+    flex: 1,
+    backgroundColor: "#6ACFED",
+    borderRadius: SIZES.width / 10,
+    padding: SIZES.width / 28,
+    alignItems: "center"
+  },
+  onPrimumSelectd: {
+    flex: 1,
+    backgroundColor: "#E86D77",
+    borderRadius: SIZES.width / 10,
+    padding: SIZES.width / 28,
+    alignItems: "center"
+  },
   standardPlan: {
     flex: 1,
-    paddingLeft: SIZES.width / 28,
-    alignSelf: "center"
+    backgroundColor: "#02BDEB",
+    padding: SIZES.width / 28,
+    borderRadius: SIZES.width / 10,
+    alignItems: "center"
   },
   premiumPlan: {
     flex: 1,
-    alignSelf: "center"
+    backgroundColor: "#EE071C",
+    padding: SIZES.width / 28,
+    borderRadius: SIZES.width / 10,
+    alignItems: "center"
   },
   planText: {
     fontSize: SIZES.width / 28,
@@ -180,7 +363,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     justifyContent: "space-between",
-    marginTop: SIZES.width / 12,
+    marginTop: SIZES.width / 20,
     width: SIZES.width / 1.2,
     borderRadius: SIZES.width / 13,
     paddingHorizontal: SIZES.width / 20,
@@ -192,7 +375,7 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   planPrice: {
-    fontSize: SIZES.width / 12,
+    fontSize: SIZES.width / 10,
     color: "#3D3D3D"
   },
   multiSliderContainer: {
@@ -230,6 +413,7 @@ const styles = StyleSheet.create({
     borderColor: "#999",
     borderWidth: 2,
     padding: 5,
+    paddingVertical: SIZES.width / 40,
     marginTop: SIZES.width / 10,
     marginHorizontal: SIZES.width / 50,
     borderRadius: SIZES.width / 25
@@ -255,18 +439,28 @@ const styles = StyleSheet.create({
   utTextContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingHorizontal: SIZES.width / 20
+    paddingHorizontal: SIZES.width / 20,
+    alignItems: 'center'
   },
   utText: {
     flexDirection: "row",
+    justifyContent: 'flex-start',
     paddingTop: SIZES.width / 65,
     fontSize: SIZES.width / 33,
-    color: "#777"
+    color: "#777",
+    alignItems: 'center'
   },
   crossMark: {
     fontSize: SIZES.width / 37,
     textAlignVertical: "center",
     paddingRight: 4
+  },
+  checkMark: {
+    fontSize: SIZES.width / 27,
+    textAlignVertical: "center",
+    paddingRight: 4,
+    color: 'green',
+    fontWeight: 'bold'
   },
   crossMarktext: {
     fontSize: SIZES.width / 33,

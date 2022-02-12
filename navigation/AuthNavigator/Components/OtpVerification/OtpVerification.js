@@ -11,7 +11,7 @@ import {
 import { FONTS, images, SIZES } from "../../../../constants";
 import { CustomButton } from "../../../../components";
 
-const OtpVerification = () => {
+const OtpVerification = ({navigation}) => {
   const [number, onChangeNumber] = React.useState(null);
   return (
     <SafeAreaView style={styles.wrapper}>
@@ -30,7 +30,14 @@ const OtpVerification = () => {
             />
           </View>
           <View style={styles.otpbtn}>
-            <CustomButton>Verify</CustomButton>
+            <CustomButton
+              onPress={() => navigation.navigate('SelectPlans')}
+              btnbgcolor="#7540FD"
+              btnRadius={20}
+              btnpaddingVertical={SIZES.width / 60}
+              btnpaddingHorizontal={SIZES.width / 20}
+              btnfontsize={SIZES.width / 25}
+            >Verify</CustomButton>
           </View>
         </View>
       </ImageBackground>

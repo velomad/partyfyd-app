@@ -58,7 +58,7 @@ const Slider = (props) => {
             })
           }}
           selectedStyle={{
-            backgroundColor: '#A5D721'
+            backgroundColor: !!props.seekBarColor? props.seekBarColor : "#666"
           }}
           trackStyle={{
             backgroundColor: '#CECECE',

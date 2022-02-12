@@ -11,6 +11,12 @@ export const info = require("../assets/images/info.png");
 export const edit = require("../assets/images/edit.png");
 export const profileImage = require("../assets/images/profileImage.png");
 export const feedback = require("../assets/images/FeedBack.png");
+export const crossmark = require("../assets/images/crossmark.png");
+export const checkmark = require("../assets/images/checkmark.png");
+export const cake1 = require("../assets/images/cake1.jpg");
+export const cake2 = require("../assets/images/cake2.jpg");
+export const cake3 = require("../assets/images/cake3.jpg");
+export const cake4 = require("../assets/images/cake4.jpg");
 
 export default {
   partyfydLogo,
@@ -25,5 +31,11 @@ export default {
   info,
   edit,
   profileImage,
-  feedback
+  feedback,
+  crossmark,
+  checkmark,
+  cake1,
+  cake2,
+  cake3,
+  cake4
 };

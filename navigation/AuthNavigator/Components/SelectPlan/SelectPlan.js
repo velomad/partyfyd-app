@@ -43,7 +43,7 @@ const Item = ({ img }) => (
   />
 );
 
-const SelectPlan = () => {
+const SelectPlan = ({navigation}) => {
 
   const renderItem = ({ item }) => <Item title={item.title} />;
   const [selectedPlan, setSelectedPlan] = React.useState('BasicPlan');
@@ -236,7 +236,7 @@ const SelectPlan = () => {
           </View>
           <View style={styles.otpbtn}>
             <CustomButton
-              onPress={() => navigation.navigate('SelectPlans')}
+              onPress={() => navigation.navigate('partyfyd')}
               btnbgcolor={selectedPlan == 'BasicPlan'? "#A5D721": selectedPlan == 'StandardPlan'? '#6ACFED':'#EE071C'}
               btnRadius={20}
               btnpaddingVertical={SIZES.width / 60}

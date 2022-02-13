@@ -3,7 +3,7 @@ import { Text, View, StyleSheet } from "react-native";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
-import { SelectPlan, EnterPhoneNo, OtpVerification, FeedBack } from "./Components";
+import { EnterPhoneNo, OtpVerification, FeedBack } from "./Components";
 
 const AuthNavigator = () => {
 
@@ -19,11 +19,6 @@ const AuthNavigator = () => {
           name="OtpVerification"
           options={{ headerShown: false }}
           component={OtpVerification}
-        />
-        <Stack.Screen
-          name="SelectPlans"
-          options={{ headerShown: false }}
-          component={SelectPlan}
         />
       </Stack.Navigator>
     </View>

@@ -6,3 +6,4 @@ export { default as FeedBack } from "./FeedBack";
 export { default as CreateEvent } from "./CreateEvent";
 export { default as Notifications } from "./Notifications";
 export { default as HelpAndSupport } from "./HelpAndSupport";
+export { default as SelectPlan } from "./SelectPlan";

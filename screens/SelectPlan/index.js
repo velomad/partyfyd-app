@@ -10,9 +10,8 @@ import {
   TouchableOpacity,
   FlatList
 } from "react-native";
-import { MultiSlider } from "../../../../components";
-import { FONTS, images, SIZES } from "../../../../constants";
-import { CustomButton } from "../../../../components";
+import { MultiSlider,CustomButton } from "../../components";
+import { FONTS, images, SIZES } from "../../constants";
 
 const DATA = [
   {

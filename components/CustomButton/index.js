@@ -1,22 +1,10 @@
 import * as React from "react";
 import { Button } from "react-native-paper";
-import { COLORS, SIZES } from "../../constants";
+import { Text } from 'react-native';
 
-const CustomButton = ({
-  onPress,
-  mode = "contained",
-  icon,
-  children,
-  btnRadius = SIZES.radius,
-  btnbgcolor = COLORS.primary
-}) => (
-  <Button
-    icon={icon}
-    mode={mode}
-    onPress={onPress}
-    style={{ borderRadius: btnRadius, backgroundColor: btnbgcolor }}
-  >
-    {children}
+const CustomButton = ({ onPress, mode = "contained", icon,btnfontsize, children, btnpaddingVertical, btnRadius ,btnbgcolor,btnpaddingHorizontal}) => (
+  <Button icon={icon}  mode={mode} onPress={onPress} style={{borderRadius: btnRadius, backgroundColor:btnbgcolor, paddingHorizontal: btnpaddingHorizontal, paddingVertical: btnpaddingVertical }}>
+    <Text style={{fontSize: btnfontsize}}>{children}</Text>
   </Button>
 );
 

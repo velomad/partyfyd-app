@@ -3,12 +3,7 @@ import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import BottomNavigator from "../BottomNavigator";
 import Header from "../components/Header/Header";
-import {
-  Notifications,
-  HelpAndSupport,
-  FeedBack,
-  CreateEvent
-} from "../../screens";
+import { Notifications, HelpAndSupport, FeedBack, SelectPlan } from '../../screens';
 import { View, Text, StyleSheet, Image, Button } from "react-native";
 
 const Stack = createStackNavigator();
@@ -33,7 +28,16 @@ const AppNavigator = (props) => {
   console.log(props);
 
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      initialRouteName="selectPlans"
+    >
+      <Stack.Screen
+        name="selectPlans"
+        component={SelectPlan}
+        options={{
+          headerShown: false,
+        }}
+      />
       <Stack.Screen
         name="partyfyd"
         options={{ headerShown: false }}

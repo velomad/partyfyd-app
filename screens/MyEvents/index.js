@@ -22,7 +22,7 @@ const MyEvents = ({ navigation }) => {
 
       <View>
         <View style={styles.eventNameContainer}>
-          <Text style={{ color: COLORS.white }}>Basic Plan</Text>
+          <Text style={{ color: COLORS.white }}>Basic Plan (3/15)</Text>
           <TouchableOpacity
             onPress={() => navigation.navigate("createEvent")}
             style={{
@@ -30,7 +30,7 @@ const MyEvents = ({ navigation }) => {
               borderRadius:
                 Math.round(
                   Dimensions.get("window").width +
-                    Dimensions.get("window").height
+                  Dimensions.get("window").height
                 ) / 2,
               height: SIZES.width / 16,
               width: SIZES.width / 16,
@@ -88,6 +88,35 @@ const MyEvents = ({ navigation }) => {
         <View style={{ marginTop: "5%" }}>
           <Events />
         </View>
+        <View style={styles.eventNameContainer1}>
+          <Text style={{ color: COLORS.white }}>Premium Plan (4/15)</Text>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("createEvent")}
+            style={{
+              backgroundColor: COLORS.white,
+              borderRadius:
+                Math.round(
+                  Dimensions.get("window").width +
+                  Dimensions.get("window").height
+                ) / 2,
+              height: SIZES.width / 16,
+              width: SIZES.width / 16,
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <Text
+              style={{
+                color: COLORS.secondary
+              }}
+            >
+              +
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <View>
+          <Events />
+        </View>
       </View>
     </View>
   );
@@ -103,11 +132,20 @@ const styles = StyleSheet.create({
   },
   eventNameContainer: {
     padding: "3%",
-    backgroundColor: COLORS.secondary,
+    backgroundColor: '#A5D721',
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     borderRadius: SIZES.radius
+  },
+  eventNameContainer1: {
+    padding: "3%",
+    backgroundColor: '#EE071C',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    borderRadius: SIZES.radius,
+    marginVertical: SIZES.width / 20
   },
   eventContainer: {
     borderRadius: SIZES.radius

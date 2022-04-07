@@ -148,30 +148,44 @@ const Home = () => {
   return (
     <View style={styles.container}>
       <FocusAwareStatusBar barStyle="dark-content" backgroundColor="#fff" />
-
-      <View style={{ flex: 1 }}>
-        <Timeline
-          circleSize={20}
-          circleColor="gray"
-          lineColor="red"
-          timeContainerStyle={{ minWidth: 50 }}
-          timeStyle={{
-            textAlign: "center",
-            color: "#7540FD",
-            fontWeight: "bold"
-          }}
-          descriptionStyle={{ color: "gray" }}
-          options={{
-            showsVerticalScrollIndicator: false,
-            bounces: true,
-            alwaysBounceVertical: true
-          }}
-          isUsingFlatlist={true}
-          //..other props
-          data={data}
-          renderDetail={renderDetail}
-        />
-      </View>
+      {
+        false ?
+          <View style={{ flex: 1 }}>
+            <Timeline
+              circleSize={20}
+              circleColor="gray"
+              lineColor="red"
+              timeContainerStyle={{ minWidth: 50 }}
+              timeStyle={{
+                textAlign: "center",
+                color: "#7540FD",
+                fontWeight: "bold"
+              }}
+              descriptionStyle={{ color: "gray" }}
+              options={{
+                showsVerticalScrollIndicator: false,
+                bounces: true,
+                alwaysBounceVertical: true
+              }}
+              isUsingFlatlist={true}
+              //..other props
+              data={data}
+              renderDetail={renderDetail}
+            />
+          </View> :
+          <View style={styles.nodata_wrapper}>
+            <Image
+              source={require('../../assets/images/noplans.png')}
+              style={styles.nodata_img}
+            />
+            <View style={styles.floatButton}>
+              <Image
+                source={require('../../assets/images/plus.png')}
+                style={styles.nodataText}
+              />
+            </View>
+          </View>
+      }
     </View>
   );
 };
@@ -204,5 +218,32 @@ const styles = StyleSheet.create({
   textDescription: {
     marginLeft: 10,
     color: "gray"
+  },
+  nodata_wrapper: {
+    flex: 1,
+    backgroundColor: '#FFF',
+    flexDirection: "column",
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  nodata_img: {
+    position: 'relative',
+    height: SIZES.width / 1,
+    width: SIZES.width / 1.5
+  },
+  floatButton: {
+    position: 'absolute',
+    backgroundColor: '#7540FD',
+    right: SIZES.width / 30,
+    bottom: SIZES.width / 10,
+    borderRadius: SIZES.width / 4.5,
+    width: SIZES.width / 6,
+    height: SIZES.width / 6,
+  },
+  nodataText: {
+    width: SIZES.width / 20,
+    height: SIZES.width / 20,
+    marginVertical: SIZES.width / 17,
+    marginHorizontal: SIZES.width / 17,
   }
 });

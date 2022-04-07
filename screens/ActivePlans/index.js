@@ -73,8 +73,9 @@ const ActivePlans = () => {
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
+      <Text>Hello</Text>
 
-      <SelectPlan />
+      {/* <SelectPlan /> */}
     </View>
   );
 };

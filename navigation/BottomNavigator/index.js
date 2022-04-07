@@ -13,7 +13,7 @@ const BottomNavigator = ({navigation}) => {
         name="home"
         component={Home}
         options={{
-          header: () => <Header title="Home" navigation={navigation} />
+          header: () => <Header title="Hi Ajay!" navigation={navigation} />
         }}
       />
       <Tab.Screen

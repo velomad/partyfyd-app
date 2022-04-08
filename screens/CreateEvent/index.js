@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useMemo, useRef } from "react";
-import { View, Text, StyleSheet, ScrollView, TextInput } from "react-native";
+import { View, Text, StyleSheet, ScrollView, TextInput, Button } from "react-native";
 import { CustomButton, FocusAwareStatusBar, TextField } from "../../components";
 import RNPickerSelect from "react-native-picker-select";
 import { COLORS, SIZES } from "../../constants";
@@ -7,19 +7,29 @@ import { ToggleButton } from "react-native-paper";
 import DatePicker from "react-native-date-picker";
 import BottomSheet from "reanimated-bottom-sheet";
 import Animated from "react-native-reanimated";
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 const CreateEvent = () => {
   const [isBottomSheetOpen, setBottomSheetOpen] = useState(false);
   const sheetRef = React.useRef(null);
   const fall = new Animated.Value(1);
-
+  const [show, setShow] = useState(false);
   const handleSnapPress = () => {
     sheetRef.current.snapTo(0);
   };
 
-  console.log(sheetRef);
+  const showDatepicker = () => {
+    setShow(true);
 
-  const [date, setDate] = useState(new Date());
+  };
+
+  const [date, setDate] = useState("");
+
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate;
+    setShow(false);
+    setDate(currentDate);
+  };
   const [value, setValue] = React.useState("left");
 
   const renderHeader = () => (
@@ -169,8 +179,38 @@ const CreateEvent = () => {
           />
         </View>
 
+
         <View style={styles.fieldsGap}>
           <TextField label={"Name/Message on cake"} />
+        </View>
+        {/* <View style={styles.fieldsGap}>
+          <TextField label={"Event Date"} value={date.toLocaleString()} />
+        </View> */}
+        <View style={styles.fieldsGap}>
+          <View style={styles.eventDateField} onStartShouldSetResponder={() => showDatepicker()}>
+            {/* <Button
+            onPress={showDatepicker}
+            title="Event Date"
+            style={styles.eventDateField}
+            color="#FFF"
+          /> */}
+            <Text style={styles.dateText}>
+              {
+                !!date ? date.toDateString() : "Event Date"
+              }
+            </Text>
+          </View>
+        </View>
+        <View>
+          {show && (
+            <DateTimePicker
+              testID="dateTimePicker"
+              value={!!date?date: new Date()}
+              mode={'date'}
+              is24Hour={true}
+              onChange={onChange}
+            />
+          )}
         </View>
 
         <View style={styles.fieldsGap}>
@@ -272,5 +312,16 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     backgroundColor: COLORS.primary,
     marginBottom: 10
+  },
+  eventDateField: {
+    borderColor: '#828282',
+    borderWidth: 1,
+    paddingVertical: SIZES.width / 21,
+    borderRadius: SIZES.width / 70
+  },
+  dateText: {
+    color: '#666',
+    paddingLeft: SIZES.width / 38,
+    fontSize: SIZES.width / 24
   }
 });
